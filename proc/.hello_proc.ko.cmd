@@ -1,0 +1,1 @@
+cmd_/home/admin/repos/lab6-debug/proc/hello_proc.ko := arm-eabi-ld -r -EL -z noexecstack -T ./scripts/module-common.lds -T ./arch/arm/kernel/module.lds  --build-id  -o /home/admin/repos/lab6-debug/proc/hello_proc.ko /home/admin/repos/lab6-debug/proc/hello_proc.o /home/admin/repos/lab6-debug/proc/hello_proc.mod.o ;  true

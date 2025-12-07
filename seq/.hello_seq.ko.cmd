@@ -1,0 +1,1 @@
+cmd_/home/admin/repos/lab6-debug/seq/hello_seq.ko := arm-eabi-ld -r -EL -z noexecstack -T ./scripts/module-common.lds -T ./arch/arm/kernel/module.lds  --build-id  -o /home/admin/repos/lab6-debug/seq/hello_seq.ko /home/admin/repos/lab6-debug/seq/hello_seq.o /home/admin/repos/lab6-debug/seq/hello_seq.mod.o ;  true

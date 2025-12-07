@@ -1,0 +1,156 @@
+Please press Enter to activate this console. 
+/ # insmod /lib/modules/4.19.325/extra/hello_debug.ko
+[  166.453687] hello_debug: loading out-of-tree module taints kernel.
+[  166.463823] hello_debug: module loaded
+[  166.464084] hello_debug: triggering NULL dereference!
+[  166.464733] Unhandled fault: page domain fault (0x81b) at 0x00000000
+[  166.465554] pgd = bc1cb4bc
+[  166.465716] [00000000] *pgd=48b0d835, *pte=00000000, *ppte=00000000
+[  166.466430] Internal error: : 81b [#1] SMP ARM
+[  166.466802] Modules linked in: hello_debug(O+)
+[  166.467277] CPU: 0 PID: 63 Comm: insmod Tainted: G           O      4.19.325 #1
+[  166.467657] Hardware name: Generic DT based system
+[  166.468103] PC is at hello_debug_init+0x28/0x1000 [hello_debug]
+[  166.468285] LR is at hello_debug_init+0x1c/0x1000 [hello_debug]
+[  166.468468] pc : [<bf005028>]    lr : [<bf00501c>]    psr: 600f0013
+[  166.468671] sp : c8b3bdd0  ip : 00000000  fp : bf002000
+[  166.469334] r10: 00000000  r9 : c1704c48  r8 : 00000000
+[  166.469596] r7 : bf005000  r6 : ffffe000  r5 : c1704c48  r4 : c18881a0
+[  166.470695] r3 : 00000000  r2 : 0000007b  r1 : 1a569000  r0 : 00000000
+[  166.470943] Flags: nZCv  IRQs on  FIQs on  Mode SVC_32  ISA ARM  Segment none
+[  166.471261] Control: 10c5387d  Table: 48aac06a  DAC: 00000051
+[  166.471942] Process insmod (pid: 63, stack limit = 0x3166ed3f)
+[  166.472486] Stack: (0xc8b3bdd0 to 0xc8b3c000)
+[  166.472819] bdc0:                                     c18881a0 c030362c c8b05440 c04f2cd4
+[  166.473156] bde0: 00210d00 00000002 c1704c48 c8ae9400 8040003f c04f36c0 00000000 76375719
+[  166.473584] be00: ffe00000 c8ae98c0 8040003e e0968000 c8ae98c0 76375719 e0968000 c8ae9400
+[  166.473865] be20: bf002000 76375719 bf002000 00000002 c8b05500 00000002 c8b05440 c03d2b4c
+[  166.474713] be40: 00000001 c03d4ee4 c8b3bf30 c8b3bf30 00000002 c8b05400 00000002 c03d4f00
+[  166.475350] be60: bf00200c 00007fff bf002000 c03d1d88 c8add418 bf002048 c8add5c4 bf0021f4
+[  166.476202] be80: 00000000 bf002130 c135be18 c1221c34 c1221ca4 c1704c48 c1708f04 c8ae98c0
+[  166.476456] bea0: fffff000 e0800000 c8ae98c0 c8ae9400 00000000 00000000 00000000 00000000
+[  166.476719] bec0: 00000000 00000000 6e72656b 00006c65 00000000 00000000 00000000 00000000
+[  166.477659] bee0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[  166.478032] bf00: 00000000 76375719 00000080 00000f08 00000000 e0968f08 0011c0e0 c1704c48
+[  166.478492] bf20: 001086c4 ffffe000 00000051 c03d5364 e0968116 e09681c0 e0968000 00000f08
+[  166.478839] bf40: e0968aa8 e0968980 e09687e0 00003000 00003040 00000000 00000000 00000000
+[  166.479715] bf60: 00001428 00000019 0000001a 00000011 00000000 0000000e 00000000 76375719
+[  166.480168] bf80: 000f411e b6f3138c b6f50950 00000f08 00000080 c0301264 c8b3a000 00000080
+[  166.480549] bfa0: 000f411e c0301000 b6f3138c b6f50950 0011b1d8 00000f08 001086c4 00000000
+[  166.480983] bfc0: b6f3138c b6f50950 00000f08 00000080 00000001 bebf8e7c 001086c4 000f411e
+[  166.482047] bfe0: bebf8b38 bebf8b28 0003b270 b6e0a1b0 600f0010 0011b1d8 00000000 00000000
+[  166.483298] [<bf005028>] (hello_debug_init [hello_debug]) from [<c030362c>] (do_one_initcall+0x54/0x214)
+[  166.489194] [<c030362c>] (do_one_initcall) from [<c03d2b4c>] (do_init_module+0x48/0x1ec)
+[  166.489704] [<c03d2b4c>] (do_init_module) from [<c03d4f00>] (load_module+0x21a8/0x24b4)
+[  166.490706] [<c03d4f00>] (load_module) from [<c03d5364>] (sys_init_module+0x158/0x18c)
+[  166.491303] [<c03d5364>] (sys_init_module) from [<c0301000>] (ret_fast_syscall+0x0/0x54)
+[  166.491688] Exception stack(0xc8b3bfa8 to 0xc8b3bff0)
+[  166.492565] bfa0:                   b6f3138c b6f50950 0011b1d8 00000f08 001086c4 00000000
+[  166.493297] bfc0: b6f3138c b6f50950 00000f08 00000080 00000001 bebf8e7c 001086c4 000f411e
+[  166.494178] bfe0: bebf8b38 bebf8b28 0003b270 b6e0a1b0
+[  166.494604] Code: eb7a3ad6 e3a03000 e3a0207b e1a00003 (e5832000) 
+[  166.495057] ---[ end trace 6134aee3bf3dde4c ]---
+Segmentation fault
+/ # dmesg | tail -100
+[    1.333424] usbcore: registered new interface driver usb-storage
+[    1.333815] usbcore: registered new interface driver usbserial_generic
+[    1.334076] usbserial: USB Serial support registered for generic
+[    1.334279] usbcore: registered new interface driver ftdi_sio
+[    1.334454] usbserial: USB Serial support registered for FTDI USB Serial Device
+[    1.334716] usbcore: registered new interface driver pl2303
+[    1.335121] usbserial: USB Serial support registered for pl2303
+[    1.335396] usbcore: registered new interface driver usb_serial_simple
+[    1.335675] usbserial: USB Serial support registered for carelink
+[    1.335832] usbserial: USB Serial support registered for flashloader
+[    1.336025] usbserial: USB Serial support registered for funsoft
+[    1.340270] usbserial: USB Serial support registered for google
+[    1.341053] usbserial: USB Serial support registered for hp4x
+[    1.341645] usbserial: USB Serial support registered for kaufmann
+[    1.342652] usbserial: USB Serial support registered for libtransistor
+[    1.344153] usbserial: USB Serial support registered for moto_modem
+[    1.345009] usbserial: USB Serial support registered for motorola_tetra
+[    1.345276] usbserial: USB Serial support registered for nokia
+[    1.345751] usbserial: USB Serial support registered for novatel_gps
+[    1.346089] usbserial: USB Serial support registered for siemens_mpi
+[    1.346827] usbserial: USB Serial support registered for suunto
+[    1.347457] usbserial: USB Serial support registered for vivopay
+[    1.347587] usbserial: USB Serial support registered for zio
+[    1.353550] rtc-pl031 9010000.pl031: rtc core: registered pl031 as rtc0
+[    1.355307] i2c /dev entries driver
+[    1.364577] sdhci: Secure Digital Host Controller Interface driver
+[    1.366128] sdhci: Copyright(c) Pierre Ossman
+[    1.367328] Synopsys Designware Multimedia Card Interface Driver
+[    1.368683] sdhci-pltfm: SDHCI platform and OF driver helper
+[    1.370409] ledtrig-cpu: registered to indicate activity on CPUs
+[    1.373418] usbcore: registered new interface driver usbhid
+[    1.373976] usbhid: USB HID core driver
+[    1.378562] NET: Registered protocol family 10
+[    1.383904] Segment Routing with IPv6
+[    1.384597] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    1.386693] NET: Registered protocol family 17
+[    1.387411] can: controller area network core (rev 20170425 abi 9)
+[    1.387994] NET: Registered protocol family 29
+[    1.388310] can: raw protocol (rev 20170425)
+[    1.388774] can: broadcast manager protocol (rev 20170425 t)
+[    1.389100] can: netlink gateway (rev 20170425) max_hops=1
+[    1.390078] Key type dns_resolver registered
+[    1.390518] ThumbEE CPU extension supported.
+[    1.390669] Registering SWP/SWPB emulation handler
+[    1.392665] Loading compiled-in X.509 certificates
+[    1.400060] input: gpio-keys as /devices/platform/gpio-keys/input/input0
+[    1.403341] rtc-pl031 9010000.pl031: setting system clock to 2025-12-07 01:06:55 UTC (1765069615)
+[    1.408903] uart-pl011 9000000.pl011: no DMA platform data
+[    1.498740] Freeing unused kernel memory: 2048K
+[    1.505274] Run /init as init process
+[  166.453687] hello_debug: loading out-of-tree module taints kernel.
+[  166.463823] hello_debug: module loaded
+[  166.464084] hello_debug: triggering NULL dereference!
+[  166.464733] Unhandled fault: page domain fault (0x81b) at 0x00000000
+[  166.465554] pgd = bc1cb4bc
+[  166.465716] [00000000] *pgd=48b0d835, *pte=00000000, *ppte=00000000
+[  166.466430] Internal error: : 81b [#1] SMP ARM
+[  166.466802] Modules linked in: hello_debug(O+)
+[  166.467277] CPU: 0 PID: 63 Comm: insmod Tainted: G           O      4.19.325 #1
+[  166.467657] Hardware name: Generic DT based system
+[  166.468103] PC is at hello_debug_init+0x28/0x1000 [hello_debug]
+[  166.468285] LR is at hello_debug_init+0x1c/0x1000 [hello_debug]
+[  166.468468] pc : [<bf005028>]    lr : [<bf00501c>]    psr: 600f0013
+[  166.468671] sp : c8b3bdd0  ip : 00000000  fp : bf002000
+[  166.469334] r10: 00000000  r9 : c1704c48  r8 : 00000000
+[  166.469596] r7 : bf005000  r6 : ffffe000  r5 : c1704c48  r4 : c18881a0
+[  166.470695] r3 : 00000000  r2 : 0000007b  r1 : 1a569000  r0 : 00000000
+[  166.470943] Flags: nZCv  IRQs on  FIQs on  Mode SVC_32  ISA ARM  Segment none
+[  166.471261] Control: 10c5387d  Table: 48aac06a  DAC: 00000051
+[  166.471942] Process insmod (pid: 63, stack limit = 0x3166ed3f)
+[  166.472486] Stack: (0xc8b3bdd0 to 0xc8b3c000)
+[  166.472819] bdc0:                                     c18881a0 c030362c c8b05440 c04f2cd4
+[  166.473156] bde0: 00210d00 00000002 c1704c48 c8ae9400 8040003f c04f36c0 00000000 76375719
+[  166.473584] be00: ffe00000 c8ae98c0 8040003e e0968000 c8ae98c0 76375719 e0968000 c8ae9400
+[  166.473865] be20: bf002000 76375719 bf002000 00000002 c8b05500 00000002 c8b05440 c03d2b4c
+[  166.474713] be40: 00000001 c03d4ee4 c8b3bf30 c8b3bf30 00000002 c8b05400 00000002 c03d4f00
+[  166.475350] be60: bf00200c 00007fff bf002000 c03d1d88 c8add418 bf002048 c8add5c4 bf0021f4
+[  166.476202] be80: 00000000 bf002130 c135be18 c1221c34 c1221ca4 c1704c48 c1708f04 c8ae98c0
+[  166.476456] bea0: fffff000 e0800000 c8ae98c0 c8ae9400 00000000 00000000 00000000 00000000
+[  166.476719] bec0: 00000000 00000000 6e72656b 00006c65 00000000 00000000 00000000 00000000
+[  166.477659] bee0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[  166.478032] bf00: 00000000 76375719 00000080 00000f08 00000000 e0968f08 0011c0e0 c1704c48
+[  166.478492] bf20: 001086c4 ffffe000 00000051 c03d5364 e0968116 e09681c0 e0968000 00000f08
+[  166.478839] bf40: e0968aa8 e0968980 e09687e0 00003000 00003040 00000000 00000000 00000000
+[  166.479715] bf60: 00001428 00000019 0000001a 00000011 00000000 0000000e 00000000 76375719
+[  166.480168] bf80: 000f411e b6f3138c b6f50950 00000f08 00000080 c0301264 c8b3a000 00000080
+[  166.480549] bfa0: 000f411e c0301000 b6f3138c b6f50950 0011b1d8 00000f08 001086c4 00000000
+[  166.480983] bfc0: b6f3138c b6f50950 00000f08 00000080 00000001 bebf8e7c 001086c4 000f411e
+[  166.482047] bfe0: bebf8b38 bebf8b28 0003b270 b6e0a1b0 600f0010 0011b1d8 00000000 00000000
+[  166.483298] [<bf005028>] (hello_debug_init [hello_debug]) from [<c030362c>] (do_one_initcall+0x54/0x214)
+[  166.489194] [<c030362c>] (do_one_initcall) from [<c03d2b4c>] (do_init_module+0x48/0x1ec)
+[  166.489704] [<c03d2b4c>] (do_init_module) from [<c03d4f00>] (load_module+0x21a8/0x24b4)
+[  166.490706] [<c03d4f00>] (load_module) from [<c03d5364>] (sys_init_module+0x158/0x18c)
+[  166.491303] [<c03d5364>] (sys_init_module) from [<c0301000>] (ret_fast_syscall+0x0/0x54)
+[  166.491688] Exception stack(0xc8b3bfa8 to 0xc8b3bff0)
+[  166.492565] bfa0:                   b6f3138c b6f50950 0011b1d8 00000f08 001086c4 00000000
+[  166.493297] bfc0: b6f3138c b6f50950 00000f08 00000080 00000001 bebf8e7c 001086c4 000f411e
+[  166.494178] bfe0: bebf8b38 bebf8b28 0003b270 b6e0a1b0
+[  166.494604] Code: eb7a3ad6 e3a03000 e3a0207b e1a00003 (e5832000) 
+[  166.495057] ---[ end trace 6134aee3bf3dde4c ]---
+/ # 
+
